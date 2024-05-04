@@ -9,8 +9,10 @@ yy='azertyuiopmlkjhgfdsqwxcvbn'
 def ap():
     email = request.args.get("email")
     m = check_gmail(email)
-    return(m)
-        
+    if 'good' in m:
+        return(m)
+    else:
+        return(m)
 def tll():
   try:
     n1=''.join(cc(yy)for i in range(rr(6,9)))
