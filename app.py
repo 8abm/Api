@@ -40,7 +40,8 @@ def tll():
       'https://accounts.google.com/_/signup/validatepersonaldetails',
       cookies=cookies,
       headers=headers,
-      data=data
+      data=data,proxies = {
+"https":"http://1pbojyp6x45ccdi:cusks5nlvup5477@rp.proxyscrape.com:6060"}
   )
     print(response.text)
     tl=str(response.text).split('",null,"')[1].split('"')[0]
