@@ -8,11 +8,12 @@ yy='azertyuiopmlkjhgfdsqwxcvbn'
 @app.route("/")
 def ap():
     email = request.args.get("email")
-    m = check_gmail(email)
-    if 'good' in m:
+    if '@' in email:
+        m = check_gmail(email)
+    try:
         return(m)
-    else:
-        return(m)
+    except:
+        return("None")
 def tll():
   try:
     n1=''.join(cc(yy)for i in range(rr(6,9)))
@@ -39,12 +40,13 @@ def tll():
       'https://accounts.google.com/_/signup/validatepersonaldetails',
       cookies=cookies,
       headers=headers,
-      data=data,proxies = {"https":"http://005J37F43IEV:Y70DRCR8GX7X@46.232.24.25:5433"}
+      data=data
   )
+    print(response.text)
     tl=str(response.text).split('",null,"')[1].split('"')[0]
     host=response.cookies.get_dict()['__Host-GAPS']
-#    print(tl)
-#    print(host)
+    print(tl)
+    print(host)
     return tl,host
   except Exception as e:
     print(e)
@@ -76,12 +78,15 @@ def check_gmail(email):
     params=params,
     cookies=cookies,
     headers=headers,
-    data=data,proxies = {"https":"http://005J37F43IEV:Y70DRCR8GX7X@46.232.24.25:5433"}
+    data=data,proxies = {
+"https":"http://1pbojyp6x45ccdi:cusks5nlvup5477@rp.proxyscrape.com:6060"}
   );print(response.text)
     if '"gf.uar",1' in str(response.text):return 'good'
     elif '[["gf.uar",2' in response.text or 'gf.uar",3' in response.text:
         return 'bad'
     else:
         return(response.text)
-  except:check_gmail(email)
+  except Exception as e:
+      e = f"this is error{e}"
+      return(e)
 app.run(host="0.0.0.0",port=8080)
